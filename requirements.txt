@@ -1,0 +1,20 @@
+# PDF / text extraction
+PyPDF2>=3.0.0
+pdf2image>=1.16.0
+
+# OCR libs
+pytesseract>=0.3.10
+easyocr>=1.6.2
+ocrmypdf>=13.0.0
+
+# AWS
+boto3>=1.28.0
+
+# Utilities & evaluation
+python-Levenshtein>=0.20.9   # fast edit distance (optional)
+editdistance                 # alternative/easier; optional
+pandas
+tqdm
+
+# Optional: for image handling
+Pillow
