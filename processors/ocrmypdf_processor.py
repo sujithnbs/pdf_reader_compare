@@ -1,0 +1,25 @@
+from .base import BaseProcessor
+import subprocess
+from pathlib import Path
+import tempfile
+
+class OCRmyPDFProcessor(BaseProcessor):
+    name = 'ocrmypdf'
+
+    def process_pdf(self, pdf_path: Path) -> Path:
+        ocr_pdf = self.output_dir /f"{pdf_path.stem}.pdf"
+        txt_out = self.output_dir /f"{pdf_path.stem}_{self.name}.txt"
+
+        cmd = [
+            "ocrmypdf",
+            "__skip-text",
+            str(pdf_path),
+            str(ocr_pdf),
+        ]
+
+        subprocess.run(cmd, check=True)
+
+        # now extract text from ocr_pdf using pdf2text or PyPDF2
+        # for simplicity use pdftotext (from poppler)
+        subprocess.run(["pdftotext", "-layout", str(ocr_pdf), str(txt_out.with_suffix(".txt"))], check=True)
+        return txt_out.with_suffix(".txt")
