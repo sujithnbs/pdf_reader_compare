@@ -1,3 +1,6 @@
+import os
+os.environ['PATH'] = r'C:\Program Files\poppler\Library\bin' + os.pathsep + os.environ['PATH']
+
 import easyocr
 from .base import BaseProcessor
 from pathlib import Path
@@ -17,6 +20,6 @@ class EasyOCRProcessor(BaseProcessor):
             result = self.reader.readtext(np.array(img))
             # result -> list of (bbox, text, confidence)
             texts.append(" ".join([r[1] for r in result]))
-        out.write_text("\n\n".join(texts), encodings = "utf-8")
+        out.write_text("\n\n".join(texts), encoding = "utf-8")
         return out
     

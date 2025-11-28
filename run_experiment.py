@@ -18,3 +18,6 @@ def run(pdf_paths, output_root="outputs"):
                 p.process(pdf)
             except Exception as e:
                 print(f"Error in {p.name} for {pdf}: {e}")
+#
+
+## python run_experiment.py samples/
